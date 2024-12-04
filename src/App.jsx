@@ -1,35 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from 'react'
+import Axios from "axios";
+import './app.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+function Elixirs() {
+const [search, setSearch] = useState("");
+CONST [data, setData] = useState([]);
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+   useEffect(() => {
+    Axios.get("https://wizard-world-api.herokuapp.com/Elixirs").then((res) => {
+      setData(res.data);
+ });
+}, []);
+ return (
 
-export default App
+ <div className="bkg">
+  <input type="text" placeholder="enter your Elixir"
+  value={search}
+  onCange={(e) => setSearch(e.target.value)}
+  /><button>Search</button>
+
+  {data.filter((item) => {
+    return search.toLowerCase() === "" 
+    ? item 
+    : item.name.toLowerCase().includes(search);
+  })
+  .map((item, index) => (
+    <ul key={index}>
+      <li> elixer name: {item.name}</li>
+      <li> elixer difficulty:{item.difficulty}</li>
+      <li> elixer ingredient:{item.ingredient}</li>
+      <li> elixer manufacturer:{item.manufacturer}</li>
+      <li> elixer effect:{item.effect}</li>
+      <li> elixer sideEffect:{item.sideEffect}</li>
+      <li> elixer time:{item.time}</li>
+    </ul>
+  ))};
+ </div>
+ )
+ }
+
+export default Elixirs

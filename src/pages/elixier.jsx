@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import Axios from "axios";
 import '/pages.css'
 
 function Elixirs() {
@@ -6,7 +7,7 @@ const [search, setSearch] = useState("");
 CONST [data, setData] = useState([]);
 
   const generateElixir = () => {
-    ("https://wizard-world-api.herokuapp.com/Elixirs").then((res) => {
+    Axios.get("https://wizard-world-api.herokuapp.com/Elixirs").then((res) => {
       setData(res.data);
  }
 );
