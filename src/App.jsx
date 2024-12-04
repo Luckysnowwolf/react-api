@@ -11,14 +11,15 @@ const [data, setData] = useState([]);
       setData(res.data);
  });
 }, []);
- return (
 
+ return (
  <div className="bkg">
   <input className="searchbar" type="text" placeholder="enter your Elixir"S
   value={search}
   onCange={(e) => setSearch(e.target.value)}
   />
   <button className="SchB">Search</button>
+  
 
   {data.filter((item) => {
     return search.toLowerCase() === "" 
