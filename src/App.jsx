@@ -4,7 +4,7 @@ import './app.css'
 
 function Elixirs() {
 const [search, setSearch] = useState("");
-CONST [data, setData] = useState([]);
+const [data, setData] = useState([]);
 
    useEffect(() => {
     Axios.get("https://wizard-world-api.herokuapp.com/Elixirs").then((res) => {
@@ -14,10 +14,11 @@ CONST [data, setData] = useState([]);
  return (
 
  <div className="bkg">
-  <input type="text" placeholder="enter your Elixir"
+  <input className="searchbar" type="text" placeholder="enter your Elixir"S
   value={search}
   onCange={(e) => setSearch(e.target.value)}
-  /><button>Search</button>
+  />
+  <button className="SchB">Search</button>
 
   {data.filter((item) => {
     return search.toLowerCase() === "" 
