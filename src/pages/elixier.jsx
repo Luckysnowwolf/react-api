@@ -15,6 +15,12 @@ CONST [data, setData] = useState([]);
  return (
 
  <div>
+  <navbar className="navbar">
+    <button className="btn"></button>
+    <button className="btn"></button>
+    <button className="btn"></button>
+    <button className="btn"></button>
+  </navbar>
   <input type="text" placeholder="enter your Elixir"
   value={search}
   onCange={(e) => setSearch(e.target.value)}
